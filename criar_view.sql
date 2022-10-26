@@ -1,7 +1,7 @@
--- Vamos criaar uma view que será utilizada dentro do Power BI
--- Também iremos carregar nossa tabela de vendas no Power BI
+-- Vamos criaar uma view que serÃ¡ utilizada dentro do Power BI
+-- TambÃ©m iremos carregar nossa tabela de vendas no Power BI
 -- Nome da view = vw_Potencial
--- O cmd left join significa que estamo pegando todos os registros da tbPotencial_Final e apenas as informações dos clientes que converteram vendas dentro do ano
+-- O cmd left join significa que estamo pegando todos os registros da tbPotencial_Final e apenas as informaÃ§Ãµes dos clientes que converteram vendas dentro do ano
 
 CREATE view [vw_Potencial]
 

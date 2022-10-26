@@ -1,5 +1,5 @@
 --
--- Criação da tabela de transação
+-- CriaÃ§Ã£o da tabela de transaÃ§Ã£o
 --
 
 create table tbVendas_Final (
@@ -55,7 +55,7 @@ BULK INSERT tbPotencial_Final
 	ROWTERMINATOR = '0x0a' -- delimitador de linha do Databricks
 	)
 
--- Síntese de criação de index
+-- SÃ­ntese de criaÃ§Ã£o de index
 CREATE INDEX index1 ON tbPotencial_Final (CodCliente);
 CREATE INDEX index1 ON tbVendas_Final (CodCliente);
 
