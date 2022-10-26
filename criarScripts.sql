@@ -1,7 +1,7 @@
 
 -- Oportunidades de crescimento para clientes
 --Dei um apelido para a tabela. No caso, "a"
--- Utilizo into para jogar os dados para uma tabela tempor·ria #temp1 para depois, plotar no slide
+-- Utilizo into para jogar os dados para uma tabela tempor√°ria #temp1 para depois, plotar no slide
 select     a.Ano,
            a.CodCliente,
 		   sum(distinct b.valorpotencial) as ValorPotencial,
@@ -17,7 +17,7 @@ select * from #temp1
 
 
 
--- Formatar a tabela para melhor visualizaÁ„o
+-- Formatar a tabela para melhor visualiza√ß√£o
 select Ano,
 	   format(sum(ValorPotencial), '###,##0.00','pt-br') as ValorPotencial,
 	   format(sum(ValorVendas), '###,##0.00','pt-br') as ValorVendas,
@@ -28,12 +28,12 @@ group by Ano
 order by Ano
 
 
--- Para preencher a tabela em relaÁ„o ‡ oportunidade e ao que foi alcanÁado
--- O cmd abs deixa os dados como n˙mero absoluto, sem o sinal de negativo
--- O cmd round È para determinar as casas decimais, no caso, ser· 1 casa decimal
+-- Para preencher a tabela em rela√ß√£o √† oportunidade e ao que foi alcan√ßado
+-- O cmd abs deixa os dados como n√∫mero absoluto, sem o sinal de negativo
+-- O cmd round √© para determinar as casas decimais, no caso, ser√° 1 casa decimal
 select   Ano,
 	     round(abs(((sum(ValorVendas)/sum(ValorPotencial))*100)-100),1) as [Oportunidade%],
-	     round(abs(abs(((sum(ValorVendas)/sum(ValorPotencial))*100)-100)-100),1) as [AlcanÁado%]
+	     round(abs(abs(((sum(ValorVendas)/sum(ValorPotencial))*100)-100)-100),1) as [Alcan√ßado%]
 from     #temp1
 group by Ano
 order by Ano
@@ -43,7 +43,7 @@ order by Ano
 -- Entendendo a perda de clientes
 -- Slide 3
 -- Cmd pivot passa os dados de linhas para colunas
--- Como temos os dados de 2022 apens atÈ o mÍs de agosto, vamos comparar os dados dos outros meses atÈ agosto tambÈm
+-- Como temos os dados de 2022 apens at√© o m√™s de agosto, vamos comparar os dados dos outros meses at√© agosto tamb√©m
 select *
 from   (
 	   select Ano,
@@ -67,11 +67,11 @@ order by ano
 
 -- Conquistar novos clientes
 -- Slide 4
--- Iremos trabalhar com dados de clientes que tÍm potencial de vendas porÈm, n„o realizaram nenhuma compra no ano. Quero entender porquÍ n„o vendi nada para ele
+-- Iremos trabalhar com dados de clientes que t√™m potencial de vendas por√©m, n√£o realizaram nenhuma compra no ano. Quero entender porqu√™ n√£o vendi nada para ele
 -- Quero asber do ValorVendasPotencial, quanto ele representa percentualmente
--- Para isso, iremos jogas essas informaÁıes em uma nova tabela tempor·ria #tmp_nc
--- O cmd where not exists se refere aos clientes que n„o transacionaram no ano
--- Drop table #tmp_nc È para apagar a tabela tempor·ria
+-- Para isso, iremos jogas essas informa√ß√µes em uma nova tabela tempor√°ria #tmp_nc
+-- O cmd where not exists se refere aos clientes que n√£o transacionaram no ano
+-- Drop table #tmp_nc √© para apagar a tabela tempor√°ria
 Drop table #tmp_nc
 
 select   Ano,
@@ -95,7 +95,7 @@ where    not exists (select 1
 group by Ano
 
 
--- Agora precisamos transformar em percentual os dados que est„o na "tmp_nc
+-- Agora precisamos transformar em percentual os dados que est√£o na "tmp_nc
 select * from #tmp_nc order by ano
 
 select Ano,
@@ -108,7 +108,7 @@ from #tmp_nc order by ano
 
 
 -- Total de clientes com potencial
--- O cmd wuth rollup acrescenta mais uma linha ‡ tabela com o total de clientes com potencial
+-- O cmd wuth rollup acrescenta mais uma linha √† tabela com o total de clientes com potencial
 select    a.ano, count(distinct CodCliente) as Qdade
 from	  tbpotencial_final a
 where     not exists (select 1
@@ -120,7 +120,7 @@ with rollup
 
 
 
---An·lise por cidade
+--An√°lise por cidade
 -- Slide 5
 -- Ranking
 -- Ordenando pelo campo 2 (valor) de maneira decrescente: order by  2 desc
@@ -136,7 +136,7 @@ from      (
 
 
 -- Para encontrar o valor total vendido das top 10
--- Primeiro, crio uma tabela tempor·ria a partir do cmd into #tmp_cidade
+-- Primeiro, crio uma tabela tempor√°ria a partir do cmd into #tmp_cidade
 select *
 into #tmp_cidade
 from      (
@@ -158,8 +158,8 @@ select format(sum(valor), '###,##0.00','pt-br') from #tmp_cidade
 
 
 -- Percentual das top 10 cidades
--- Declaramos uma vari·vel do tipo float: @total_top10
--- Pego o valor total das cidades e jogo para a vari·vel (segunda linha)
+-- Declaramos uma vari√°vel do tipo float: @total_top10
+-- Pego o valor total das cidades e jogo para a vari√°vel (segunda linha)
 -- Depois divido pelo valor total de vendas
 Declare @total_top10 as float
 select  @total_top10 = sum(valor) from #tmp_cidade
@@ -169,10 +169,10 @@ select round(@total_top10/sum(valor)*100,2) as Perc from tbvendas_final
 -- Qdade total de clientes que temos nas top 10
 select count(distinct codcliente) from tbvendas_final where cidade in (select cidade from #tmp_cidade)
 
--- Qdade de transaÁıes
+-- Qdade de transa√ß√µes
 select count(codcliente) from tbvendas_final where cidade in (select cidade from #tmp_cidade)
 
--- Total de transaÁıes
+-- Total de transa√ß√µes
 select count(codcliente) from tbvendas_final
 
 
@@ -191,7 +191,7 @@ with Clientes as
 	 select *
 	 into   #tmp_produto1
 	 from   Clientes
--- Gr·fico de rosca
+-- Gr√°fico de rosca
 	 select Categoria, sum(Valor) as Valor
 	 from (select codcliente,
 				 count(codcliente) as Qdade
@@ -204,7 +204,7 @@ with Clientes as
 		  order by 1
 
 
--- Qdade de clientes que compraram apenas 1 produto e verifique quantas linhas tem no rodapÈ do programa
+-- Qdade de clientes que compraram apenas 1 produto e verifique quantas linhas tem no rodap√© do programa
 select CodCliente,
 	   count(CodCliente) as Qdade
 	from #tmp_produto1
@@ -224,7 +224,7 @@ select format(sum(Valor), '###,##0.00','pt-br') as Valor
 		  on X.CodCliente = b.CodCliente
 
 
--- Total de produtos (verificar a quantidade de linhas no rodapÈ do programa)
+-- Total de produtos (verificar a quantidade de linhas no rodap√© do programa)
 select distinct Produto
 	from (select CodCliente,
 			count(CodCliente) as Qdade
