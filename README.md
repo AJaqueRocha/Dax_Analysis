@@ -17,7 +17,7 @@ Aprendi a manipular tabelas de acordo com a necessidade para gerar resultados e 
 - Power BI
 
 ### Notebooks 
-- [Construcao] (https://databricks-prod-cloudfront.cloud.databricks.com/public/4027ec902e239c93eaaa8714f173bcfc/1744032918475628/485362230016694/3034499891577020/latest.html): Construção da Análise de Dados no Databricks
-- [Definicao] https://databricks-prod-cloudfront.cloud.databricks.com/public/4027ec902e239c93eaaa8714f173bcfc/1744032918475628/3666527044850517/3034499891577020/latest.html): Análise e Definição dos dados
+- [Construção](https://databricks-prod-cloudfront.cloud.databricks.com/public/4027ec902e239c93eaaa8714f173bcfc/1744032918475628/485362230016694/3034499891577020/latest.html): Construção da Análise de Dados no Databricks
+- [Definição](https://databricks-prod-cloudfront.cloud.databricks.com/public/4027ec902e239c93eaaa8714f173bcfc/1744032918475628/3666527044850517/3034499891577020/latest.html): Análise e Definição dos dados
 
-### [Dashboard] (https://github.com/AJaqueRocha/Dax_Analysis/blob/main/JornadaDados.pbix): Dashboard em PowerBI para Download
+### [Dashboard](https://github.com/AJaqueRocha/Dax_Analysis/blob/main/JornadaDados.pbix): Dashboard em PowerBI para Download
